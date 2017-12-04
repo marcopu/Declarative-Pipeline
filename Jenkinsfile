@@ -50,24 +50,6 @@ pipeline{
 			 sh 'scp -r target/*.war root@192.168.110.50:/dockerfolder'
 			 sh 'ssh root@192.168.110.10 ansible-playbook /pipeline/playbooks/dockerplay.yml'
 			} 
-		
-			
-			post{
-        		   always {
-            			echo 'Deleting workspace. . .'
-    				  deleteDir()
-				
-    				 echo 'Cleaning. . .'
-				  sh 'ssh root@192.168.110.10 ansible-playbook /pipeline/playbooks/dockerclean.yml'
-    				  sh 'ssh root@192.168.110.10 rm -r /pipeline'
-				  sh 'ssh root@192.168.110.40 rm -r /pipeline'
-				  sh 'ssh root@192.168.110.50 rm -r /dockerfolder'
-				   }
-			
-        		   success {
-            			echo 'GAME OVER!'
-        		       }
-			 }
 		 }
 	}
 }
