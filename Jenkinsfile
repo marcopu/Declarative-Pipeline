@@ -17,6 +17,7 @@ pipeline{
 			sh 'scp -r ** root@192.168.110.10:/pipeline'
 			sh 'ssh root@192.168.110.10 ansible-playbook /pipeline/playbooks/unit.yml'
 			} 
+		}
 			
 		stage("Build archive"){
 			steps{
