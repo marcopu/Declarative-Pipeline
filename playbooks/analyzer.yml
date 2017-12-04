@@ -1,0 +1,9 @@
+---
+
+- hosts: ansible
+  remote_user: root
+  become: yes
+  tasks:
+
+    - name: Sonar Analysis
+      shell: cd /pipeline; mvn sonar:sonar

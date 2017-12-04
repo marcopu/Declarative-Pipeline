@@ -1,0 +1,31 @@
+---
+
+- hosts: docker
+  remote_user: root
+  sudo: yes
+  tasks:
+
+    - name: Stop previously running containers
+      shell: docker stop $(docker ps -a -q)
+
+    - name: Remove previously containers
+      shell: docker rm $(docker ps -a -q)
+
+
+    - name: Remove previously images
+      shell: docker rmi -f app tomcat localhost:5000/app registry
+
+
+- hosts: selenium
+  remote_user: root
+  sudo: yes
+  tasks:
+
+    - name: Stop previously running containers
+      shell: docker stop $(docker ps -a -q)
+
+    - name: Remove previously containers
+      shell: docker rm $(docker ps -a -q)
+
+    - name: Remove previously images
+      shell: docker rmi -f 192.168.100.50:5000/app

@@ -1,0 +1,9 @@
+---
+
+- hosts: ansible
+  remote_user: root
+  become: yes
+  tasks:
+
+    - name: Unit Testing
+      shell: cd /pipeline; mvn test

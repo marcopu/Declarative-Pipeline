@@ -1,0 +1,13 @@
+---
+
+- hosts: selenium
+  remote_user: root
+  sudo: yes
+  tasks:
+  
+    - name: Create REPORTS folder 
+      file: path=/reports state=directory
+      
+
+    - name: App deployed -> Testing on Mozilla and Chrome browsers
+      shell: python /pipeline/selenium/suite.py  >> /reports/"report_$(date +"%Y_%m_%d_%I_%M").html"
