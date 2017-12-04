@@ -50,7 +50,6 @@ pipeline{
 			 sh 'scp -r target/*.war root@192.168.110.50:/dockerfolder'
 			 sh 'ssh root@192.168.110.10 ansible-playbook /pipeline/playbooks/dockerplay.yml'
 			} 
-		 }
 		
 			
 			post{
