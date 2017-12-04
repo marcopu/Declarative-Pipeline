@@ -13,7 +13,7 @@ pipeline{
 			steps{
 			//Transfer set
 			//sh 'scp -r /var/lib/jenkins/jobs/DeclarativePipeline/workspace/** root@192.168.90.10:/home'
-			sh 'ssh administrator@192.168.110.1 'cd Desktop/slaves; vagrant up''
+			sh 'ssh administrator@192.168.110.1 cd Desktop/slaves; vagrant up'
 			sh 'scp -r ** root@192.168.110.10:/pipeline'
 			sh 'ssh root@192.168.110.10 ansible-playbook /pipeline/playbooks/unit.yml'
 			} 
