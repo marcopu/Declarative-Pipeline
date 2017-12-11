@@ -65,5 +65,31 @@ pipeline{
 			 sh 'ssh root@192.168.110.10 ansible-playbook /pipeline/playbooks/dockerplay.yml'
 			} 
 		 }
+		
+		stage("Functional test: running test"){
+			steps{
+			 sh 'ssh root@192.168.100.40 mkdir -p /pipeline'
+			 sh 'scp -r ** root@192.168.100.40:/pipeline'
+			 sh 'ssh root@192.168.100.10 ansible-playbook /pipeline/playbooks/functional.yml'
+			}
+			
+			post{
+        		   always {
+            			echo 'Deleting workspace. . .'
+    				  deleteDir()
+				
+    				 echo 'Cleaning. . .'
+				  sh 'ssh root@192.168.100.10 ansible-playbook /pipeline/playbooks/dockerclean.yml'
+    				  sh 'ssh root@192.168.100.10 rm -r /pipeline'
+				  sh 'ssh root@192.168.100.40 rm -r /pipeline'
+				  sh 'ssh root@192.168.100.50 rm -r /dockerfolder'
+				   }
+			
+        		   success {
+            			echo 'GAME OVER!'
+        		       }
+			 }
+		}
+
 	}
 }
