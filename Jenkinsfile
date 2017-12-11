@@ -39,7 +39,7 @@ pipeline{
 			steps{
 			//Transfer set
 			//sh 'scp -r /var/lib/jenkins/jobs/DeclarativePipeline/workspace/** root@192.168.90.10:/home'
-			sh 'ssh root@192.168.110.10 mkdir /pipeline'
+			sh 'ssh root@192.168.110.10 mkdir -p /pipeline'
 			sh 'scp -r ** root@192.168.110.10:/pipeline'
 			sh 'ssh root@192.168.110.10 ansible-playbook /pipeline/playbooks/unit.yml'
 			} 
