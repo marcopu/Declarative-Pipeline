@@ -68,8 +68,8 @@ pipeline{
 		
 		stage("Functional test: running test"){
 			steps{
-			 sh 'ssh root@192.168.100.40 mkdir -p /pipeline'
-			 sh 'scp -r ** root@192.168.100.40:/pipeline'
+			 sh 'ssh root@192.168.110.40 mkdir -p /pipeline'
+			 sh 'scp -r ** root@192.168.110.40:/pipeline'
 			 sh 'ssh root@192.168.100.10 ansible-playbook /pipeline/playbooks/functional.yml'
 			}
 			
