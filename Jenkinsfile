@@ -70,7 +70,7 @@ pipeline{
 			steps{
 			 sh 'ssh root@192.168.110.40 mkdir -p /pipeline'
 			 sh 'scp -r ** root@192.168.110.40:/pipeline'
-			 sh 'ssh root@192.168.100.10 ansible-playbook /pipeline/playbooks/functional.yml'
+			 sh 'ssh root@192.168.110.10 ansible-playbook /pipeline/playbooks/functional.yml'
 			}
 			
 			post{
@@ -79,10 +79,10 @@ pipeline{
     				  deleteDir()
 				
     				 echo 'Cleaning. . .'
-				  sh 'ssh root@192.168.100.10 ansible-playbook /pipeline/playbooks/dockerclean.yml'
-    				  sh 'ssh root@192.168.100.10 rm -r /pipeline'
-				  sh 'ssh root@192.168.100.40 rm -r /pipeline'
-				  sh 'ssh root@192.168.100.50 rm -r /dockerfolder'
+				  sh 'ssh root@192.168.110.10 ansible-playbook /pipeline/playbooks/dockerclean.yml'
+    				  sh 'ssh root@192.168.110.10 rm -r /pipeline'
+				  sh 'ssh root@192.168.110.40 rm -r /pipeline'
+				  sh 'ssh root@192.168.110.50 rm -r /dockerfolder'
 				   }
 			
         		   success {
