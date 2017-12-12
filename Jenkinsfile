@@ -14,7 +14,7 @@ pipeline{
 			steps{
 			//Transfer set
 			//sh 'scp -r /var/lib/jenkins/jobs/DeclarativePipeline/workspace/** root@192.168.90.10:/home'
-			  bat 'cd slaves & vagrant resume || vagrant up'
+			  bat 'cd C:/Users/Administrator/Desktop/slaves & vagrant resume || vagrant up'
 			//sh 'scp -r ** root@192.168.110.10:/pipeline'
 			//sh 'ssh root@192.168.110.10 ansible-playbook /pipeline/playbooks/unit.yml'
 			} 
@@ -94,7 +94,7 @@ pipeline{
 		stage("Suspending..."){
 			agent{node 'winslave'}
 			steps{
-			 bat 'cd slaves & vagrant suspend'
+			 bat 'cd C:/Users/Administrator/Desktop/slaves & vagrant suspend'
 			}
 		}
 	}
