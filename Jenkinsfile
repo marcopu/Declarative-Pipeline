@@ -96,6 +96,13 @@ pipeline{
 			steps{
 			 bat 'cd C:/Users/Administrator/Desktop/slaves & vagrant suspend'
 			}
+			
+			post{
+        		   always {
+            			echo 'Deleting workspace on the agent. . .'
+    				  deleteDir()
+			   }
+			}
 		}
 	}
 }
