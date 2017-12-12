@@ -28,4 +28,4 @@
       shell: docker rm $(docker ps -a -q)
 
     - name: Remove previously images
-      shell: docker rmi -f 192.168.100.50:5000/app
+      shell: docker rmi -f 192.168.110.50:5000/app
