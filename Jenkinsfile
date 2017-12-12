@@ -47,7 +47,6 @@ pipeline{
 		 }
 		
 		
-		
 		stage("Development"){
 			steps{
 			 sh 'ssh root@192.168.110.10 ansible-playbook /pipeline/playbooks/starttomcat.yml'
