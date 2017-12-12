@@ -2,7 +2,7 @@
 
 - hosts: docker
   remote_user: root
-  sudo: yes
+  become: yes
   tasks:
 
     - name: Build the image
@@ -10,3 +10,21 @@
 
     - name: Run the local registry
       shell: docker run -d -p 5000:5000 --restart=always --name=registry registry:latest
+      
+    - name: Tag the image
+      shell: docker tag app localhost:5000/app
+
+    - name: Push the image
+      shell: docker push localhost:5000/app
+
+
+- hosts: selenium
+  remote_user: root
+  become: yes
+  tasks:
+  
+    - name: Pull the image from the registry
+      shell: docker pull 192.168.110.50:5000/app
+
+    - name: Running the test environment
+      shell: docker run -d -p 8080:8080 192.168.110.50:5000/app
