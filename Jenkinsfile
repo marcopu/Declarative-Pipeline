@@ -90,6 +90,12 @@ pipeline{
         		       }
 			 }
 		}
-
+		
+		stage("Suspending..."){
+			agent{node 'winslave'}
+			steps{
+			 bat 'cd C://Users//Administrator//Desktop//slaves & vagrant suspend'
+			}
+		}
 	}
 }
