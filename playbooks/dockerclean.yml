@@ -16,7 +16,7 @@
       shell: docker rmi -f app tomcat localhost:5000/app registry
 
 
-- hosts: selenium
+- hosts: testenv
   remote_user: root
   become: yes
   tasks:
