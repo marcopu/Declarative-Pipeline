@@ -2,7 +2,7 @@
 
 - hosts: docker
   remote_user: root
-  sudo: yes
+  become: yes
   tasks:
 
     - name: Stop previously running containers
@@ -18,7 +18,7 @@
 
 - hosts: selenium
   remote_user: root
-  sudo: yes
+  become: yes
   tasks:
 
     - name: Stop previously running containers
