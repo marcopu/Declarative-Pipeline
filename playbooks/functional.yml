@@ -2,7 +2,7 @@
 
 - hosts: selenium
   remote_user: root
-  sudo: yes
+  become: yes
   tasks:
   
     - name: Create REPORTS folder 
