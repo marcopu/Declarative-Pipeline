@@ -93,7 +93,8 @@ pipeline{
 		stage("Suspending..."){
 			agent{node 'winslave'}
 			steps{
-			 bat 'cd C:/Users/Administrator/Desktop/slaves & vagrant suspend'
+			   bat 'cd C:/Users/Administrator/Desktop/slaves'
+			 //bat 'cd C:/Users/Administrator/Desktop/slaves & vagrant suspend'
 			}
 			
 			post{
