@@ -4,8 +4,6 @@ import HTMLTestRunner
 from selenium import webdriver
 from pyvirtualdisplay import Display
 
-#from selenium.webdriver.common.keys import Keys
-
 class MozillaTesting(unittest.TestCase):
 
     display = Display(visible=0, size=(1366, 768))
