@@ -46,6 +46,11 @@ pipeline{
 			
 		 }
 		
+		stage("Code Analysis"){
+			steps{	
+		        sh 'ssh root@192.168.110.10 ansible-playbook /pipeline/playbooks/analyzer.yml'
+			}			
+		}
 		
 		stage("Development"){
 			steps{
