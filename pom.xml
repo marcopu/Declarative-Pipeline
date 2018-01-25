@@ -7,7 +7,6 @@
 
     <groupId>com.progetto</groupId>
     <artifactId>app</artifactId>
-    <version>NoLogin</version>
     <packaging>war</packaging>
 
     <properties>
