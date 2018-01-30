@@ -9,7 +9,7 @@ pipeline{
 	stages{
 		
 		
-		stage("Starting slaves..."){
+		stage("Starting slaves from Windows host"){
 			agent{node 'winslave'}
 			steps{
 			//Transfer set
@@ -21,7 +21,7 @@ pipeline{
 		}
 		
 			
-		stage("Build archive"){
+		stage("Creating archive WAR"){
 			steps{
 			 sh 'mvn clean -DskipTests'
 			 sh 'mvn compile -DskipTests'
@@ -35,7 +35,7 @@ pipeline{
 		        }*/
 		 }
 		
-		stage("Unit test"){
+		stage("Unit testing"){
 			steps{
 			//Transfer set
 			//sh 'scp -r /var/lib/jenkins/jobs/DeclarativePipeline/workspace/** root@192.168.90.10:/home'
@@ -61,7 +61,7 @@ pipeline{
 		 }
 		
 		
-		stage("Functional test: building environment"){
+		stage("Building environment for Automated Testing"){
 			steps{
 			 sh 'ssh root@192.168.110.50 mkdir -p /dockerfolder'
 			 sh 'scp Dockerfile root@192.168.110.50:/dockerfolder'
@@ -70,7 +70,7 @@ pipeline{
 			} 
 		 }
 		
-		stage("Functional test: running test"){
+		stage("Functional testing"){
 			steps{
 			 sh 'ssh root@192.168.110.40 mkdir -p /pipeline'
 			 sh 'scp -r ** root@192.168.110.40:/pipeline'
@@ -79,7 +79,7 @@ pipeline{
 			
 			post{
         		   always {
-            			echo 'Deleting workspace. . .'
+            			echo 'Deleting workspace'
     				  deleteDir()
 				
     				 echo 'Cleaning. . .'
@@ -95,7 +95,7 @@ pipeline{
 			 }
 		}
 		
-		stage("Suspending..."){
+		stage("Suspending machines"){
 			agent{node 'winslave'}
 			steps{
 			   //bat 'cd C:/Users/Administrator/Desktop/slaves'
