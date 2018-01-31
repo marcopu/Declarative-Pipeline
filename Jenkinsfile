@@ -56,7 +56,7 @@ pipeline{
 			steps{
 			 sh 'ssh root@192.168.110.10 ansible-playbook /pipeline/playbooks/starttomcat.yml'
 			 sh 'ssh root@192.168.110.30 rm -f /opt/tomcat/webapps/*.war'
-			 sh 'scp -r target/*.war root@192.168.110.30:/opt/tomcat/webapps'
+			 sh 'scp -r app/target/*.war root@192.168.110.30:/opt/tomcat/webapps'
 			} 
 		 }
 		
@@ -65,7 +65,7 @@ pipeline{
 			steps{
 			 sh 'ssh root@192.168.110.50 mkdir -p /dockerfolder'
 			 sh 'scp Dockerfile root@192.168.110.50:/dockerfolder'
-			 sh 'scp -r target/*.war root@192.168.110.50:/dockerfolder'
+			 sh 'scp -r app/target/*.war root@192.168.110.50:/dockerfolder'
 			 sh 'ssh root@192.168.110.10 ansible-playbook /pipeline/playbooks/dockerplay.yml'
 			} 
 		 }
