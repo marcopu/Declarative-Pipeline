@@ -6,4 +6,4 @@
   tasks:
 
     - name: Unit Testing
-      shell: cd /pipeline; mvn test
+      shell: cd /pipeline/app; mvn test
