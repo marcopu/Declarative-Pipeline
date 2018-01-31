@@ -1,0 +1,1 @@
+start taskkill /f /im "java.exe"

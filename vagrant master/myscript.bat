@@ -1,0 +1,1 @@
+start java -jar agent.jar -jnlpUrl http://192.168.110.20:8282/computer/winslave/slave-agent.jnlp -secret d326590548d78fb786dda12fc385309c48455a3cd7aa035f046ebd98c6342430 -workDir "c:\jenkins\slave"

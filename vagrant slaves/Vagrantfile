@@ -1,0 +1,60 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  config.vm.provision "shell", inline: "echo starting Slaves"
+  
+  config.vm.define "AnsibleVM" do |ansible|
+    ansible.vm.box_check_update = false
+    ansible.vm.box = "ubuntu/xenial64"
+    ansible.vm.network "forwarded_port", guest: 80, host: 8691
+    ansible.vm.network "private_network", ip: "192.168.110.10"
+	ansible.vm.provision "shell", path: "ansible.sh"
+    ansible.vm.provider "virtualbox" do |vb2|
+	vb2.name = "AnsibleVM"
+	vb2.memory = 2048
+    vb2.cpus = 2
+	end
+  end
+ 
+ 
+  config.vm.define "DevelopmentVM" do |development|
+    development.vm.box_check_update = false
+    development.vm.box = "ubuntu/xenial64"
+    development.vm.network "forwarded_port", guest: 80, host: 8692
+    development.vm.network "private_network", ip: "192.168.110.30"
+	development.vm.provision "shell", path: "lamp.sh"
+    development.vm.provider "virtualbox" do |vb3|
+	vb3.name = "DevelopmentVM"
+	vb3.memory = 2048
+    vb3.cpus = 2
+	end
+  end
+  
+  config.vm.define "TestingVM" do |testing|
+    testing.vm.box_check_update = false
+    testing.vm.box = "kreator/trusty64-docker"
+    testing.vm.network "forwarded_port", guest: 80, host: 8693
+    testing.vm.network "private_network", ip: "192.168.110.40"
+	testing.vm.provision "shell", path: "sonar.sh"
+    testing.vm.provider "virtualbox" do |vb4|
+	vb4.name = "TestingVM"
+	vb4.memory =4096
+    vb4.cpus = 2
+	end
+  end
+  
+  config.vm.define "DockerVM" do |docker|
+	docker.vm.box_check_update = false
+	docker.vm.box = "kreator/trusty64-docker"
+	docker.vm.network "private_network", ip: "192.168.110.50"
+	docker.vm.network "forwarded_port", guest: 80, host: 8694
+	docker.vm.provision "shell", path: "docker.sh"
+	docker.vm.provider "virtualbox" do |vb5|
+	vb5.name = "DockerVM"
+	vb5.memory =2048
+    vb5.cpus = 2
+	end
+  end	
+end
