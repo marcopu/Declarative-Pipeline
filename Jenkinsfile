@@ -23,9 +23,9 @@ pipeline{
 			
 		stage("Creating archive WAR"){
 			steps{
-			 sh 'mvn clean -DskipTests'
-			 sh 'mvn compile -DskipTests'
-			 sh 'mvn package -DskipTests'
+			 sh 'mvn -f ./app/pom.xml clean -DskipTests'
+			 sh 'mvn -f ./app/pom.xml compile -DskipTests'
+			 sh 'mvn -f ./app/pom.xml package -DskipTests'
 			}
 			
 			/*post {
