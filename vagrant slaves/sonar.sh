@@ -17,7 +17,11 @@ echo "Installazione Maven"
  apt-get update
  apt-get -y install maven
 
-#SonarQube Parametri Boot
+#SonarQube e relativi Parametri Boot
+wget https://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-5.6.4.zip
+unzip sonarqube-5.6.4.zip
+mv sonarqube-5.6.4 /opt/sonar
+
 echo "Configurazione parametri SonarQube Server"
 sysctl -w vm.max_map_count=262144
 sysctl -w fs.file-max=65536
